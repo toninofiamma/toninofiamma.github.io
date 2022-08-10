@@ -1,8 +1,17 @@
 <!DOCTYPE html>
 <head>
     <style>
+        body {
+            background-color:rgb(254, 65, 100);
+        }
+
         #camera {
             width: 500px;
+            height: 500px;
+            object-fit: cover;
+            padding: 10px;
+            background-color: white;
+            border-radius: 20px;
 
             position: absolute;
             left: 50%;
@@ -20,12 +29,111 @@
             top: 50%;
             transform: translate(-50%, -50%);
         }
+
+        #playButton {
+            width: 700px;
+            height: 150px;
+            border-radius: 20px;
+
+            position: absolute;
+            left: 50%;
+            top: 90%;
+            transform: translate(-50%, -50%);
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-size: 100px;
+            color: rgb(254, 65, 100);
+            font-weight: bold;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        #score {
+            width: 300px;
+            height: 150px;
+            border-radius: 20px;
+
+            position: absolute;
+            left: 50%;
+            top: 30%;
+            transform: translate(-50%, -50%);
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background-color: white;
+        }
+
+        #title {
+            width: 700px;
+            height: 200px;
+            color: white !important;
+
+            position: absolute;
+            left: 50%;
+            top: 15%;
+            transform: translate(-50%, -50%);
+        }
+
+        .font {
+            font-size: 100px;
+            font-family: Arial, Helvetica, sans-serif;
+            color: rgb(254, 65, 100);
+            font-weight: bold;
+        }
+
+        .colorContainer {
+            width: 200px;
+            height: 200px;
+            padding: 10px;
+            background-color: white;
+            border-radius: 20px;
+        }
+
+        .right {
+            position: absolute;
+            left: 50%;
+            top: 75%;
+            transform: translate(calc(-50% + 120px), -50%);
+        }
+
+        .left {
+            position: absolute;
+            left: 50%;
+            top: 75%;
+            transform: translate(calc(-50% - 120px), -50%);
+        }
+
+        .color {
+            width: 200px;
+            height: 200px;
+            border-radius: 20px;
+        }
+
     </style>
 </head>
 <body>
     <canvas hidden></canvas>
+
+    <div id="title" class="font"> ColorSpeedrun </div>
+
+    <div id="score" class="font"> 0 </div>
+
     <video autoplay="true" id="camera"></video>
     <div id="pointer"></div>
-    <div id="color" > sssss </div>
+
+    <div class="colorContainer left">
+        <div class="color" id="true"></div>
+    </div>
+
+    <div class="colorContainer right">
+        <div class="color" id="cameraColor"></div>
+    </div>
+
+    <button id="playButton" class="font" onclick="startGame()"> Gioca! </button>
+    
     <script src="index.js"></script>
 </body>
