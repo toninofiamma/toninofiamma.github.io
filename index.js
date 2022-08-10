@@ -12,6 +12,7 @@ if (navigator.mediaDevices.getUserMedia) {
             console.log("qualcosa è andato storto");
         })
 }
+console.log("aggiornato");
 
 (function loop() {
     requestAnimationFrame(loop)
