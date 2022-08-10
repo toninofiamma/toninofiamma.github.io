@@ -4,7 +4,7 @@ const color = document.querySelector("#color");
 const ctx = canvas.getContext("2d");
 
 if (navigator.mediaDevices.getUserMedia) {
-    navigator.mediaDevices.getUserMedia({ video: true })
+    navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
         .then((stream) => {
             camera.srcObject = stream;
         })
