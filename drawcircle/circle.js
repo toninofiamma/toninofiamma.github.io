@@ -55,7 +55,7 @@ const setRecord = (record) => {
     recordBox.innerHTML = "Record: " + record
 }
 
-var record = localStorage.getItem("record")
+var record = +localStorage.getItem("record")
 if (record === null) {
     record = 0
     localStorage.setItem("record", 0)
@@ -71,9 +71,7 @@ addEventListener("touchstart", (event) => {
 })
 
 addEventListener("touchmove", (event) => {
-    // console.log(event.touches[0].clientX, event.touches[0].clientY)
     ctx.beginPath()
-    // ctx.arc(event.touches[0].clientX, event.touches[0].clientY, 5, 0, Math.PI * 2)
     ctx.moveTo(points[points.length-1].x, points[points.length-1].y)
     points.push({x: event.touches[0].clientX, y: event.touches[0].clientY})
     ctx.lineTo(points[points.length-1].x, points[points.length-1].y)
