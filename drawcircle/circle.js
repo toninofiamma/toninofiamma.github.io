@@ -83,7 +83,7 @@ addEventListener("touchend", () => {
     let center = calcCenter()
     let lengths = calcLengths(center)
     let radius = calcRadius(lengths)
-    let score = (radius == 0) ? 0 : calcScore(radius, lengths)
+    let score = (radius == 0 || points.length <= 2) ? 0 : calcScore(radius, lengths)
     console.log(score)
     
     if (score > 0) {
