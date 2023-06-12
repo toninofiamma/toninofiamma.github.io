@@ -55,7 +55,7 @@ const setRecord = (record) => {
     recordBox.innerHTML = "Record: " + record
 }
 
-var record = +localStorage.getItem("record")
+var record = Number(localStorage.getItem("record"))
 if (record === null) {
     record = 0
     localStorage.setItem("record", 0)
