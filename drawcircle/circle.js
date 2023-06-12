@@ -97,7 +97,7 @@ addEventListener("touchend", () => {
         ctx.stroke()
     }
 
-    score = score.toFixed(1)
+    score = Number(score.toFixed(1))
 
     scoreBox.innerHTML = score
 
