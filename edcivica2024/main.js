@@ -5,8 +5,7 @@ var mouse = {x: 0, y: 0}
 var clicked = false
 
 const FPS = 60
-const BACK = "coral"
-const CHANGE = "yellow"
+const BACK = "darkcyan"
 const discElem = document.getElementById("disk");
 const dvdLet = {before: document.getElementById("letdvd"), after: document.getElementById("letdvdcut")}
 const arrow = document.getElementById("arrow")
@@ -17,6 +16,7 @@ var onMenu = true
 var room
 var changeRoom = 0
 var typeAnim = false
+var transColor = "white"
 var changePhysics = {
     speed: 0,
     acc: 2,
@@ -36,7 +36,7 @@ class Img {
         }
         this.src = document.getElementById(this.id)
         this.out = 10
-        this.std = 200
+        this.std = canvas.height/3
         this.isMoving = false
         this.off = {
             x: 0,
@@ -242,7 +242,7 @@ class Disk {
         ctx.fillStyle = "white"
         ctx.fillRect(this.pos.x-70, this.pos.y+25, 140, 30)
         ctx.fillStyle = this.color
-        ctx.font = "25px Helvetica"
+        ctx.font = "bold 25px Helvetica"
         ctx.textAlign = "center"
         ctx.fillText(this.text, this.pos.x, this.pos.y+45, 140)
     }
@@ -281,6 +281,7 @@ class Disk {
                     changeRoom = 1;
                     room = new Room(this.room);
                     this.startAnim = false
+                    transColor = this.color
                     onMenu = false
                     discAnim = false
                     this.reached = false
@@ -301,7 +302,7 @@ canvas.width = innerWidth;
 canvas.height = innerHeight;
 
 const discs = [
-    new Disk({x:300, y:100}, "Hikikomori", "black", {
+    new Disk({x:300, y:100}, "Hikikomori", "darkorchid", {
     background: document.getElementById("hikikomoriback"),
     backgroundDim: {x: 959, y: 639},
     title: "Hikikomori",
@@ -340,7 +341,7 @@ const discs = [
 
         ]
     ]}),
-    new Disk({x:100, y:200}, "Phubbing", "black", {
+    new Disk({x:100, y:200}, "Phubbing", "royalblue", {
         background: document.getElementById("phubbingback"),
         backgroundDim: {x: 1200, y: 675},
         title: "Phubbing",
@@ -356,7 +357,7 @@ const discs = [
                 "gli altri, e il phubbee, che subisce le conseguenze di essere",
                 "ignorato. Oggi, il phubbing e' comunemente definito come:",
                 "l'atto di snobbare qualcuno in un contesto sociale, guardando",
-                "il proprio telefono piuttosto che prestargli attenzione. "
+                "il proprio telefono piuttosto che prestargli attenzione."
             ], [
                 "Il phubbing ha effetti negativi sulle relazioni, sulla",
                 "percezione di se', e puo' portare a sentimenti di esclusione,",
@@ -387,7 +388,7 @@ const discs = [
 
             ]
     ]}),
-    new Disk({x:100, y:canvas.height-200}, "Storia dell'IA", "black", {
+    new Disk({x:100, y:canvas.height-200}, "Storia dell'IA", "darkslategray", {
         background: document.getElementById("aiback"),
         backgroundDim: {x: 2560, y: 1550},
         title: "Storia dell'IA",
@@ -477,7 +478,205 @@ const discs = [
 
             ]
     ]}),
-    new Disk({x:300, y:canvas.height-100}, "Rel. e droga", "black", {
+    new Disk({x:300, y:canvas.height-100}, "Arte e IA", "firebrick", {
+        background: document.getElementById("arteback"),
+        backgroundDim: {x: 1280, y: 720},
+        title: "Arte e IA",
+        text: [
+            [
+                "L'arte generata dall'intelligenza artificiale, o arte",
+                "AI, e' un campo in rapida crescita che combina la",
+                "creativita' umana con le capacita' di apprendimento delle",
+                "macchine.",
+            ], [
+                "Gli artisti stanno sfruttando gli algoritmi di",
+                "intelligenza artificiale per generare nuove idee,",
+                "spingere i confini dell'arte tradizionale e creare",
+                "opere d'arte uniche.",
+            ], [
+                "Una tecnologia chiave utilizzata nell'arte AI sono le",
+                "reti Generative Adversarial Networks (GAN). Queste reti",
+                "sono composte da due parti: un generatore che crea",
+                "immagini e un discriminatore che cerca di distinguere",
+                " tra le immagini reali e quelle generate dal generatore.",
+            ], [
+                "Gli artisti si sono quindi interessati a come la macchina",
+                "'vede', cioe' interpreta i dati visivi. E questo puo'",
+                "includere l'analisi di  immagini e video per rilevare oggetti,",
+                "persone, segnali stradali e altre caratteristiche.",
+            ], [
+                "Questa capacita' di 'vedere' come una macchina sta",
+                "aprendo nuove possibilita' per gli artisti, permettendo",
+                "loro di esplorare nuovi approcci alla creazione",
+                "artistica."
+            ], [
+                "Al MOMA (Museum Of Modern Art) e' stato esposto",
+                "'Unsupervised'       di Refik Anadol, un'opera creata",
+                "utilizzando l'IA che mira a scoprire come una macchina",
+                "'pensa', cambiando forma continuamente.",
+            ]
+        ],
+        textColor: "white",
+        textMax: 800,
+        maxRows: 5,
+        words: [
+            [
+                
+            ], [
+    
+            ], [
+                
+            ], [
+
+            ], [
+
+            ], [
+                {ix: 240, row: 1, src: "unsupervised", srcx: 1519, srcy: 1519}
+            ]
+    ]}),
+    new Disk({x:canvas.width-300, y:canvas.height-100}, "Articolo 38", "darkorange", {
+        background: document.getElementById("art38back"),
+        backgroundDim: {x: 2560, y: 1656},
+        title: "L'Articolo 38",
+        text: [
+            [
+                "L'Articolo 38 della Costituzione Italiana e' parte",
+                "del settore della sicurezza sociale, quel settore",
+                "che si occupa di sancire le condizioni minime di",
+                "vita a cui ogni inviduo ha diritto.",
+            ], [
+                "Questo articolo si inserisce nel piu' ampio contesto",
+                "dei diritti sociali, che sono distinti dai diritti",
+                "naturali (inalienabili e universali) perche' interessano",
+                "solo i cittadini in un particolare disagio economico",
+                "e sociale.",
+            ], [
+                "L'articolo cosi' recita:",
+                "''Ogni cittadino inabile al lavoro e sprovvisto dei",
+                "mezzi necessari per vivere ha diritto al mantenimento",
+                "e all'assistenza sociale. Inoltre, i lavoratori hanno",
+                "diritto ad avere assicurati mezzi adeguati alle loro",
+                "esigenze di vita in caso di: infortunio, malattia,",
+                "invalidita', vecchiaia, disoccupazione involontaria.''",
+            ], [
+                "Questo implica che lo stato deve farsi carico delle",
+                "necessita' vitali dei suoi cittadini piu' vulnerabili.",
+                "Cosi' lo stato mette a disposizione vari strumenti:",
+                "- Pensioni di invalidita' e vecchiaia,",
+                "- Assicurazioni contro infortuni sul lavoro e malattie,",
+                "- Assistenza per i disoccupati",
+            ]
+        ],
+        textColor: "white",
+        textMax: 800,
+        maxRows: 7,
+        words: [
+            [
+                
+            ], [
+    
+            ], [
+    
+            ], [
+
+            ]
+    ]}),
+    new Disk({x:canvas.width-100, y:canvas.height-200}, "Legge 242/16", "mediumseagreen", {
+        background: document.getElementById("legge242back"),
+        backgroundDim: {x: 1792, y: 1024},
+        title: "Regolamentazione della cannabis",
+        text: [
+            [
+                "La Legge 242/2016 e' stata promulgata il 2 dicembre",
+                "2016 e mira a promuovere la coltivazione e lo",
+                "sviluppo della filiera agroindustriale della canapa in",
+                "Italia. Questa normativa e' entrata in vigore il",
+                "14 gennaio 2017."
+            ], [
+                "Questa legge sancisce che le varieta' di canapa, che",
+                "si possono coltivare, sono solo quelle presenti in un",
+                "apposito catalogo e il cui contenuto di THC deve essere",
+                "minore di 0.2%.",
+            ], [
+                "La canapa non puo' essere coltivata a scopo",
+                "ricreativo, ma per i seguenti usi:",
+                "- Alimentare",
+                "- Cosmetico",
+                "- Industriale",
+            ]
+        ],
+        textColor: "white",
+        textMax: 800,
+        maxRows: 5,
+        words: [
+            [
+                
+            ], [
+    
+            ], [
+                {ix: 200, row: 2, src: "oliodicanapa", srcx: 494, srcy: 494},
+                {ix: 200, row: 3, src: "calmante", srcx: 832, srcy: 1000},
+                {ix: 200, row: 4, src: "bioedilizia", srcx: 514, srcy: 577},
+            ]
+    ]}),
+    new Disk({x:canvas.width-100, y:200}, "Eff. del fumo", "sandybrown", {
+        background: document.getElementById("nicotinaback"),
+        backgroundDim: {x: 960, y: 640},
+        title: "Effetti della nicotina",
+        text: [
+            [
+                "La nicotina e' una sostanza che puo' creare una",
+                "forte dipendenza. Questa dipendenza puo' essere",
+                "sia fisica che psicologica.",
+            ], [
+                "La nicotina       agisce sul cervello e si fa scambiare",
+                "per acetilcolina,       un neurotrasmettitore responsabile",
+                "del rilascio di dopamina, che e' la sostanza chimica del",
+                "cervello legata alla motivazione primaria.",
+            ], [
+                "Quando una persona fuma, la nicotina entra nel flusso",
+                "sanguigno e raggiunge il cervello in pochi secondi. Li',",
+                "si lega ai recettori dell'acetilcolina, causando il",
+                "rilascio di dopamina. ",
+            ], [
+                "Questo provoca una sensazione di piacere e benessere,",
+                "che il cervello associa al fumo. Di conseguenza, il",
+                "cervello inizia a desiderare piu' nicotina per ricreare",
+                "quella sensazione, creando cosi' una dipendenza.",
+            ], [
+                "La quantita' di nicotina che puo' causare dipendenza varia",
+                "da persona a persona. Alcune persone possono sviluppare",
+                "una dipendenza fumando solo un paio di sigarette al giorno,",
+                "mentre altre possono fumare di piu' senza diventare",
+                "dipendenti.",
+            ], [
+                "Smettere di fumare puo' essere molto difficile a causa della",
+                "forte dipendenza dalla nicotina. Se stai cercando di smettere,",
+                "potrebbe essere utile cercare supporto e consulenza",
+                "professionale. Ricorda, non sei solo in questo percorso e ci",
+                "sono molte risorse disponibili per aiutarti. Buona fortuna!",
+            ]
+        ],
+        textColor: "white",
+        textMax: 1000,
+        maxRows: 5,
+        words: [
+            [
+                
+            ], [
+                {ix: 180, row: 0, src: "nicotina", srcx: 260, srcy: 260},
+                {ix: 250, row: 1, src: "acetilcolina", srcx: 1200, srcy: 1200},
+            ], [
+                
+            ], [
+
+            ], [
+
+            ], [
+
+            ]
+    ]}),
+    new Disk({x:canvas.width-300, y:100}, "Rel. e droga", "seagreen", {
         background: document.getElementById("reliback"),
         backgroundDim: {x: 1224, y: 816},
         title: "Religione e droga",
@@ -540,204 +739,6 @@ const discs = [
 
             ]
     ]}),
-    new Disk({x:canvas.width-300, y:canvas.height-100}, "Articolo 38", "black", {
-        background: document.getElementById("art38back"),
-        backgroundDim: {x: 2560, y: 1656},
-        title: "L'Articolo 38",
-        text: [
-            [
-                "L'Articolo 38 della Costituzione Italiana e' parte",
-                "del settore della sicurezza sociale, quel settore",
-                "che si occupa di sancire le condizioni minime di",
-                "vita a cui ogni inviduo ha diritto.",
-            ], [
-                "Questo articolo si inserisce nel piu' ampio contesto",
-                "dei diritti sociali, che sono distinti dai diritti",
-                "naturali (inalienabili e universali) perche' interessano",
-                "solo i cittadini in un particolare disagio economico",
-                "e sociale.",
-            ], [
-                "L'articolo cosi' recita:",
-                "''Ogni cittadino inabile al lavoro e sprovvisto dei",
-                "mezzi necessari per vivere ha diritto al mantenimento",
-                "e all'assistenza sociale. Inoltre, i lavoratori hanno",
-                "diritto ad avere assicurati mezzi adeguati alle loro",
-                "esigenze di vita in caso di: infortunio, malattia,",
-                "invalidita', vecchiaia, disoccupazione involontaria.''",
-            ], [
-                "Questo implica che lo stato deve farsi carico delle",
-                "necessita' vitali dei suoi cittadini piu' vulnerabili.",
-                "Cosi' lo stato mette a disposizione vari strumenti:",
-                "- Pensioni di invalidita' e vecchiaia,",
-                "- Assicurazioni contro infortuni sul lavoro e malattie,",
-                "- Assistenza per i disoccupati",
-            ]
-        ],
-        textColor: "white",
-        textMax: 800,
-        maxRows: 7,
-        words: [
-            [
-                
-            ], [
-    
-            ], [
-    
-            ], [
-
-            ]
-    ]}),
-    new Disk({x:canvas.width-100, y:canvas.height-200}, "Legge 242/16", "black", {
-        background: document.getElementById("legge242back"),
-        backgroundDim: {x: 1792, y: 1024},
-        title: "Regolamentazione della cannabis",
-        text: [
-            [
-                "La Legge 242/2016 e' stata promulgata il 2 dicembre",
-                "2016 e mira a promuovere la coltivazione e lo",
-                "sviluppo della filiera agroindustriale della canapa in",
-                "Italia. Questa normativa e' entrata in vigore il",
-                "14 gennaio 2017."
-            ], [
-                "Questa legge sancisce che le varieta' di canapa, che",
-                "si possono coltivare, sono solo quelle presenti in un",
-                "apposito catalogo e il cui contenuto di THC deve essere",
-                "minore di 0.2%.",
-            ], [
-                "La canapa non puo' essere coltivata a scopo",
-                "ricreativo, ma per i seguenti usi:",
-                "- Alimentare",
-                "- Cosmetico",
-                "- Industriale",
-            ]
-        ],
-        textColor: "white",
-        textMax: 800,
-        maxRows: 5,
-        words: [
-            [
-                
-            ], [
-    
-            ], [
-                {ix: 200, row: 2, src: "oliodicanapa", srcx: 494, srcy: 494},
-                {ix: 200, row: 3, src: "calmante", srcx: 832, srcy: 1000},
-                {ix: 200, row: 4, src: "bioedilizia", srcx: 514, srcy: 577},
-            ]
-    ]}),
-    new Disk({x:canvas.width-100, y:200}, "Eff. del fumo", "black", {
-        background: document.getElementById("nicotinaback"),
-        backgroundDim: {x: 960, y: 640},
-        title: "Effetti della nicotina",
-        text: [
-            [
-                "La nicotina e' una sostanza che puo' creare una",
-                "forte dipendenza. Questa dipendenza puo' essere",
-                "sia fisica che psicologica.",
-            ], [
-                "La nicotina       agisce sul cervello e si fa scambiare",
-                "per acetilcolina,       un neurotrasmettitore responsabile",
-                "del rilascio di dopamina, che e' la sostanza chimica del",
-                "cervello legata alla motivazione primaria.",
-            ], [
-                "Quando una persona fuma, la nicotina entra nel flusso",
-                "sanguigno e raggiunge il cervello in pochi secondi. Li',",
-                "si lega ai recettori dell'acetilcolina, causando il",
-                "rilascio di dopamina. ",
-            ], [
-                "Questo provoca una sensazione di piacere e benessere,",
-                "che il cervello associa al fumo. Di conseguenza, il",
-                "cervello inizia a desiderare piu' nicotina per ricreare",
-                "quella sensazione, creando cosi' una dipendenza.",
-            ], [
-                "La quantita' di nicotina che puo' causare dipendenza varia",
-                "da persona a persona. Alcune persone possono sviluppare",
-                "una dipendenza fumando solo un paio di sigarette al giorno,",
-                "mentre altre possono fumare di piu' senza diventare",
-                "dipendenti.",
-            ], [
-                "Smettere di fumare puo' essere molto difficile a causa della",
-                "forte dipendenza dalla nicotina. Se stai cercando di smettere,",
-                "potrebbe essere utile cercare supporto e consulenza",
-                "professionale. Ricorda, non sei solo in questo percorso e ci",
-                "sono molte risorse disponibili per aiutarti. Buona fortuna!",
-            ]
-        ],
-        textColor: "white",
-        textMax: 1000,
-        maxRows: 5,
-        words: [
-            [
-                
-            ], [
-                {ix: 180, row: 0, src: "nicotina", srcx: 260, srcy: 260},
-                {ix: 250, row: 1, src: "acetilcolina", srcx: 1200, srcy: 1200},
-            ], [
-                
-            ], [
-
-            ], [
-
-            ], [
-
-            ]
-    ]}),
-    new Disk({x:canvas.width-300, y:100}, "Arte e IA", "black", {
-        background: document.getElementById("arteback"),
-        backgroundDim: {x: 1280, y: 720},
-        title: "Arte e IA",
-        text: [
-            [
-                "L'arte generata dall'intelligenza artificiale, o arte",
-                "AI, e' un campo in rapida crescita che combina la",
-                "creativita' umana con le capacita' di apprendimento delle",
-                "macchine.",
-            ], [
-                "Gli artisti stanno sfruttando gli algoritmi di",
-                "intelligenza artificiale per generare nuove idee,",
-                "spingere i confini dell'arte tradizionale e creare",
-                "opere d'arte uniche.",
-            ], [
-                "Una tecnologia chiave utilizzata nell'arte AI sono le",
-                "reti Generative Adversarial Networks (GAN). Queste reti",
-                "sono composte da due parti: un generatore che crea",
-                "immagini e un discriminatore che cerca di distinguere",
-                " tra le immagini reali e quelle generate dal generatore.",
-            ], [
-                "Gli artisti si sono quindi interessati a come la macchina",
-                "'vede', cioe' interpreta i dati visivi. E questo puo'",
-                "includere l'analisi di  immagini e video per rilevare oggetti,",
-                "persone, segnali stradali e altre caratteristiche.",
-            ], [
-                "Questa capacita' di 'vedere' come una macchina sta",
-                "aprendo nuove possibilita' per gli artisti, permettendo",
-                "loro di esplorare nuovi approcci alla creazione",
-                "artistica."
-            ], [
-                "Al MOMA (Museum Of Modern Art) e' stato esposto",
-                "'Unsupervised'       di Refik Anadol, un'opera creata",
-                "utilizzando l'IA che mira a scoprire come una macchina",
-                "'pensa', cambiando forma continuamente.",
-            ]
-        ],
-        textColor: "white",
-        textMax: 800,
-        maxRows: 5,
-        words: [
-            [
-                
-            ], [
-    
-            ], [
-                
-            ], [
-
-            ], [
-
-            ], [
-                {ix: 240, row: 1, src: "unsupervised", srcx: 1519, srcy: 1519}
-            ]
-    ]}),
 ];
 
 function menu() {
@@ -753,13 +754,13 @@ function menu() {
     }
     if (discAnim || changeRoom == 1) {
         ctx.drawImage(dvdLet.after, canvas.width/2-200, canvas.height/2-135);
-        ctx.fillStyle = "coral";
+        ctx.fillStyle = BACK;
         ctx.fillRect(canvas.width/2-200, canvas.height/2-435, 400, 302)
     }
 }
 
 function changeRoomAnim() {
-    ctx.fillStyle = CHANGE
+    ctx.fillStyle = transColor
 
     if (changeRoom == 1) {
         changePhysics.speed += changePhysics.acc
