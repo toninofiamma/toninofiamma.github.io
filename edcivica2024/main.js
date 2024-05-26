@@ -604,8 +604,8 @@ const discs = [
                 "apposito catalogo e il cui contenuto di THC deve essere",
                 "minore di 0.2%.",
             ], [
-                "La canapa non puo' essere coltivata a scopo ricreativo, ma",
-                "per i seguenti usi:",
+                "La canapa non puo' essere coltivata a scopo",
+                "ricreativo, ma per i seguenti usi:",
                 "- Alimentare",
                 "- Cosmetico",
                 "- Industriale",
@@ -613,7 +613,7 @@ const discs = [
         ],
         textColor: "white",
         textMax: 800,
-        maxRows: 7,
+        maxRows: 5,
         words: [
             [
                 
@@ -640,7 +640,6 @@ const discs = [
                 "del rilascio di dopamina, che e' la sostanza chimica del",
                 "cervello legata alla motivazione primaria.",
             ], [
-
                 "Quando una persona fuma, la nicotina entra nel flusso",
                 "sanguigno e raggiunge il cervello in pochi secondi. Li',",
                 "si lega ai recettori dell'acetilcolina, causando il",
@@ -701,9 +700,9 @@ const discs = [
             ], [
                 "Una tecnologia chiave utilizzata nell'arte AI sono le",
                 "reti Generative Adversarial Networks (GAN). Queste reti",
-                "sono composte da due parti: un generatore che crea immagini",
-                " e un discriminatore che cerca di distinguere tra le",
-                "immagini reali e quelle generate dal generatore.",
+                "sono composte da due parti: un generatore che crea",
+                "immagini e un discriminatore che cerca di distinguere",
+                " tra le immagini reali e quelle generate dal generatore.",
             ], [
                 "Gli artisti si sono quindi interessati a come la macchina",
                 "'vede', cioe' interpreta i dati visivi. E questo puo'",
@@ -723,7 +722,7 @@ const discs = [
         ],
         textColor: "white",
         textMax: 800,
-        maxRows: 8,
+        maxRows: 5,
         words: [
             [
                 
@@ -824,8 +823,7 @@ addEventListener("mousedown", (event) => {
     } else {
         room.control()
     }
-
-    console.log(mouse.x-150)
+    event.preventDefault()
 })
 
 addEventListener("mousemove", (event) => {
@@ -844,6 +842,7 @@ addEventListener("mouseup", (event) => {
     } else {
         room.control()
     }
+    event.preventDefault()
 })
 
 addEventListener("touchstart", (event) => {
@@ -851,10 +850,28 @@ addEventListener("touchstart", (event) => {
     mouse.y = event.touches[0].clientY
 
     clicked = true
+
+    if (onMenu) {
+        for (const disc of discs) {
+            disc.control()
+        }
+    } else {
+        room.control()
+    }
+    event.preventDefault()
 })
 
 addEventListener("touchend", (event) => {
     clicked = false
+
+    if (onMenu) {
+        for (const disc of discs) {
+            disc.control()
+        }
+    } else {
+        room.control()
+    }
+    event.preventDefault()
 })
 
 addEventListener("touchmove", (event) => {
