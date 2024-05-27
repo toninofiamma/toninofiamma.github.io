@@ -498,7 +498,7 @@ const discs = [
                 "reti Generative Adversarial Networks (GAN). Queste reti",
                 "sono composte da due parti: un generatore che crea",
                 "immagini e un discriminatore che cerca di distinguere",
-                " tra le immagini reali e quelle generate dal generatore.",
+                "tra le immagini reali e quelle generate dal generatore.",
             ], [
                 "Gli artisti si sono quindi interessati a come la macchina",
                 "'vede', cioe' interpreta i dati visivi. E questo puo'",
