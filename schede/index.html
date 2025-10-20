@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Schede</title>
+</head>
+<body>
+    <input id="in" type="text" placeholder="Inserire numero"></input>
+    <button id="but1" type="button" onclick="verifica()">Verifica</button>
+    <button id="but2" type="button" onclick="inserisci()">Inserisci</button>
+    <p id="testo">prova</p>
+
+    <script>
+
+        function init() {
+            const inString = localStorage.getItem("completate");
+            if (inString == null) {
+                localStorage.setItem("completate", JSON.stringify([]));
+            }
+
+            aggiorna();
+        }
+
+        function verifica() {
+
+            const inString = localStorage.getItem("completate");
+            const num = parseInt(document.getElementById("in").value);
+            let list;
+
+            lista = JSON.parse(inString);
+
+            if (lista.includes(num)) {
+                alert("Hai già fatto la scheda " + num + "!!");
+            } else {
+                alert("Non hai ancora fatto la numero " + num + ".");
+            }
+
+            aggiorna();
+        }
+
+        function inserisci() {
+            const inString = localStorage.getItem("completate");
+            const num = parseInt(document.getElementById("in").value);
+            let list;
+
+            lista = JSON.parse(inString);
+
+            if (lista.includes(num)) {
+                alert("È stata già inserita la scheda " + num + "!!");
+            } else {
+                lista.push(num);
+                alert("La scheda " + num + " è stata inserita.");
+                const update = JSON.stringify(lista);
+                localStorage.setItem("completate", update);
+            }
+
+            aggiorna();
+        }
+
+        function aggiorna() {
+            const p = document.getElementById("testo");
+            const inString = localStorage.getItem("completate");
+            const counter = JSON.parse(inString).length;
+            p.innerText = `Hai fatto ${counter} schede`;
+        }
+
+        init();
+
+    </script>
+</body>
+</html>
